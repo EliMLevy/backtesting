@@ -1,6 +1,7 @@
 from functions import *
 from datetime import (timedelta, datetime)
 import pandas as pd
+from tqdm import tqdm
 
 from grapher import graph_this_please
 
@@ -13,11 +14,12 @@ def backtest(strategy, start_cash, start, end, graph=False, output_name="output"
     assets = 0
     y = []
     logs = []
-    while current < end:
+    for current in tqdm(pd.date_range(start=start,end=end)):
+    # while current < end:
         logs.append("*****************")
         logs.append(str(current.date()))
         try:
-            data = pd.read_csv("data/" + file_prefix + str(current.date()) + ".csv")
+            data = pd.read_csv("../data/" + file_prefix + str(current.date()) + ".csv")
             assets = 0
 
             for leg in strategy:
@@ -75,7 +77,7 @@ def backtest(strategy, start_cash, start, end, graph=False, output_name="output"
         if graph:
             networth = cash + assets
             y.append(networth)
-        current += timedelta(days = 1)
+        # current += timedelta(days = 1)
     
     f = open(output_name + ".txt", "w")
     f.write("\n".join(logs))
