@@ -1,7 +1,7 @@
 Stock Options Backtesting Program
 ======
 
-This python script is made to allow the simulation of vairous trading trading strategies.
+This python script is made to allow the simulation of various options trading strategies.
 
 Designed for data purchased from the CBOE (Chicago Board of Exachange).
 
